@@ -1,6 +1,6 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../supabaseClient";
 
 export default function Login() {
   return (
@@ -8,8 +8,8 @@ export default function Login() {
       <Auth
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
-        providers={[]}
-        redirectTo={window.location.origin}
+        theme="default"
+        providers={["google"]}
       />
     </div>
   );

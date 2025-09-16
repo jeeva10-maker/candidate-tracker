@@ -1,52 +1,59 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabase";
+import { useState } from "react";
+import { supabase } from "../supabaseClient";
 
 export default function ResetPassword() {
-  const [checking, setChecking] = useState(true);
-  const [password, setPassword] = useState("");
-  const [done, setDone] = useState(false);
-  const [err, setErr] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  // When the page opens from the email link, Supabase sets a session for us.
-  useEffect(() => {
-    // make sure session is present (user coming from the magic link)
-    supabase.auth.getSession().then(() => setChecking(false));
-  }, []);
-
-  const submit = async (e) => {
+  const handleReset = async (e) => {
     e.preventDefault();
-    setErr("");
-    const { error } = await supabase.auth.updateUser({ password });
-    if (error) setErr(error.message);
-    else setDone(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: '${window.location.origin}/reset-password',
+    });
+    if (error) {
+      setMessage(error.message);
+    } else {
+      setMessage("Check your email for the reset link!");
+    }
   };
 
-  if (checking) return <p style={{ padding: 24 }}>Preparing reset…</p>;
-  if (done)
-    return (
-      <div style={{ padding: 24 }}>
-        <h2>Password updated!</h2>
-        <a href="/">Go to app</a>
-      </div>
-    );
-
   return (
-    <div style={{ padding: 24, maxWidth: 420, margin: "40px auto" }}>
-      <h2>Set a new password</h2>
-      <form onSubmit={submit}>
+    <div style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}>
+      <form
+        onSubmit={handleReset}
+        style={{
+          padding: 20,
+          background: "white",
+          border: "1px solid #ddd",
+          borderRadius: 8,
+          width: 320,
+        }}
+      >
+        <h2>Reset Password</h2>
         <input
-          type="password"
-          placeholder="New password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ width: "100%", padding: 10, marginTop: 10 }}
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ width: "100%", marginBottom: 12, padding: 8 }}
           required
         />
-        <button type="submit" style={{ marginTop: 12, padding: "10px 16px" }}>
-          Update password
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: 10,
+            background: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: 4,
+            cursor: "pointer",
+          }}
+        >
+          Send Reset Link
         </button>
+        {message && <p style={{ marginTop: 12 }}>{message}</p>}
       </form>
-      {err && <p style={{ color: "crimson", marginTop: 10 }}>{err}</p>}
     </div>
   );
 }

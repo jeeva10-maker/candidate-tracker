@@ -1,6 +1,193 @@
-:root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; color-scheme: light dark; }
-a { text-decoration: none; margin-right: 10px; }
-a.active { font-weight: 700; }
-button { padding: 6px 10px; }
-input, select { padding: 6px; }
-table th, table td { border: none; }
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f4f8; /* A clean, light blue-gray background */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* New Layout Container */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 280px;
+  background-color: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.sidebar-header {
+  padding: 0 0.5rem;
+}
+
+/* Main Content Area Styling */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+}
+
+.top-header {
+  padding: 1rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* --- Card Style for Forms and Tables --- */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* New Grid Layout for Forms */
+.form-grid {
+  display: grid;
+  gap: 1.5rem; /* Gap between form fields */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: end; /* Aligns items to the bottom of their grid cell */
+}
+
+/* Full-width elements */
+.full-width {
+  grid-column: 1 / -1; /* Makes the element span across all columns */
+}
+
+/* Form field styles */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 500;
+  color: #4a5568; /* a nice gray for labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+/* Button styles */
+.button-primary,
+.button-secondary,
+.button-edit,
+.button-delete {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button-primary {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.button-primary:hover {
+  background-color: #2563eb;
+}
+
+.button-secondary {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  border: 1px solid #cbd5e1;
+}
+
+.button-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.button-edit {
+  background-color: #48bb78;
+  color: white;
+  border: none;
+}
+
+.button-edit:hover {
+  background-color: #38a169;
+}
+
+.button-delete {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+}
+
+.button-delete:hover {
+  background-color: #dc2626;
+}
+
+/* --- Table styles --- */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+thead th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Footer styles */
+.footer-container {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: auto;
+}
