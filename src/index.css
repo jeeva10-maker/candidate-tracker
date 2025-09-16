@@ -1,0 +1,6 @@
+:root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; color-scheme: light dark; }
+a { text-decoration: none; margin-right: 10px; }
+a.active { font-weight: 700; }
+button { padding: 6px 10px; }
+input, select { padding: 6px; }
+table th, table td { border: none; }
