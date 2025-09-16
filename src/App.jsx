@@ -3,6 +3,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Candidates from "./pages/Candidates";
 import Calendar from "./pages/Calendar";
 import Invite from "./pages/Invite";
+import Auth from "./pages/Auth";
 
 // Small NavItem wrapper for clean active link styling
 const NavItem = ({ to, children }) => (
@@ -26,13 +27,17 @@ export default function App() {
         <NavItem to="/">Candidates</NavItem>
         <NavItem to="/calendar">Calendar</NavItem>
         <NavItem to="/invite">Invite</NavItem>
+        <NavItem to="/login">Login</NavItem>
       </nav>
 
-      {/* Routes (no <BrowserRouter> here) */}
+      {/* Routes (no <BrowserRouter> here; it's in main.jsx) */}
       <Routes>
         <Route path="/" element={<Candidates />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/invite" element={<Invite />} />
+        <Route path="/login" element={<Auth />} />
+        {/* catch-all (optional) */}
+        <Route path="*" element={<Candidates />} />
       </Routes>
     </div>
   );
